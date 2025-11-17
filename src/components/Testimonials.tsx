@@ -1,0 +1,90 @@
+import { Star, Quote } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+
+const Testimonials = () => {
+  const testimonials = [
+    {
+      name: "Emily Richardson",
+      role: "Food Critic",
+      content: "Savoria delivers an extraordinary culinary experience. Every dish is a masterpiece, combining innovative flavors with impeccable presentation. The attention to detail is remarkable, from the amuse-bouche to the final dessert course.",
+      rating: 5,
+    },
+    {
+      name: "James Mitchell",
+      role: "Regular Guest",
+      content: "I've been dining at Savoria for over five years, and it never disappoints. The consistency in quality, the warm hospitality, and the ever-evolving menu keep me coming back. It's my go-to place for special celebrations.",
+      rating: 5,
+    },
+    {
+      name: "Sofia Martinez",
+      role: "Wine Enthusiast",
+      content: "The wine pairing at Savoria is exceptional. Their sommelier perfectly complements each dish with carefully selected wines. The Chef's Table experience was unforgettable - watching the culinary magic unfold was absolutely mesmerizing.",
+      rating: 5,
+    },
+  ];
+
+  return (
+    <section className="py-24 bg-secondary/30">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+            What Our Guests Say
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Don't just take our word for it - hear from those who have experienced the magic of Savoria
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {testimonials.map((testimonial, index) => (
+            <Card 
+              key={index}
+              className="relative hover:shadow-elegant transition-all duration-300 hover:-translate-y-2 bg-card"
+            >
+              <CardContent className="p-8">
+                <div className="absolute -top-4 left-8 w-12 h-12 rounded-full bg-primary flex items-center justify-center">
+                  <Quote className="w-6 h-6 text-primary-foreground" />
+                </div>
+                
+                <div className="flex gap-1 mb-4 mt-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 fill-gold text-gold" />
+                  ))}
+                </div>
+                
+                <p className="text-muted-foreground leading-relaxed mb-6 italic">
+                  "{testimonial.content}"
+                </p>
+                
+                <div className="border-t border-border pt-4">
+                  <p className="font-semibold text-card-foreground text-lg">
+                    {testimonial.name}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {testimonial.role}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        <div className="text-center mt-12 p-8 rounded-lg bg-primary/5 max-w-3xl mx-auto">
+          <div className="flex justify-center gap-2 mb-4">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="w-6 h-6 fill-gold text-gold" />
+            ))}
+          </div>
+          <p className="text-2xl font-semibold text-foreground mb-2">
+            Rated 4.9 out of 5 stars
+          </p>
+          <p className="text-muted-foreground">
+            Based on 1,200+ reviews across Google, Yelp, and TripAdvisor
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Testimonials;
