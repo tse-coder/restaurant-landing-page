@@ -5,16 +5,20 @@ import Features from "@/components/Features";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import Navbar, { NavOption } from "@/components/Navbar";
+import { useState } from "react";
 
 const Index = () => {
+  const [active, setActive] = useState<NavOption>(null)
   return (
     <main className="min-h-screen">
-      <Hero />
-      <About />
+      <Navbar active={active} setActive={setActive} />
+      <Hero setActive={setActive} />
+      <About setActive={setActive}  />
       <Menu />
-      <Features />
-      <Testimonials />
-      <Contact />
+      <Features setActive={setActive} />
+      <Testimonials setActive={setActive} />
+      <Contact setActive={setActive} />
       <Footer />
     </main>
   );

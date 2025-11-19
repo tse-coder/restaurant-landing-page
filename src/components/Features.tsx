@@ -1,6 +1,19 @@
 import { Clock, Truck, Wine, Gift, Users2, Sparkles } from "lucide-react";
+import { SetStateAction, useEffect, useRef } from "react";
+import { NavOption } from "./Navbar";
+import { useInView } from "framer-motion";
 
-const Features = () => {
+const Features = ({
+  setActive,
+}: {
+  setActive: React.Dispatch<SetStateAction<NavOption>>;
+}) => {
+   const ref = useRef(null);
+  const inView = useInView(ref, { margin: "-50% 0px -50% 0px" });
+
+  useEffect(() => {
+    if (inView) setActive("SERVICES");
+  }, [inView]);
   const features = [
     {
       icon: Clock,
@@ -41,7 +54,7 @@ const Features = () => {
   ];
 
   return (
-    <section className="py-24 bg-background">
+    <section className="py-24 bg-background" id="services" ref={ref}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">

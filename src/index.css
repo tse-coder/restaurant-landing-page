@@ -5,6 +5,14 @@
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
+@font-face {
+  font-family: "Playfair";
+  src: url("/fonts/playfair.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'Fancy';
+  src: url("/fonts/fancy.ttf") format("truetype");
+}
 
 @layer base {
   :root {
@@ -37,13 +45,17 @@ All colors MUST be HSL.
     --ring: 18 65% 55%;
 
     --radius: 0.5rem;
-    
+
     --charcoal: 25 15% 20%;
     --warm-cream: 40 60% 95%;
     --gold: 45 80% 65%;
     --terracotta-light: 18 55% 65%;
-    
-    --gradient-hero: linear-gradient(135deg, hsl(18 65% 55% / 0.95), hsl(25 50% 35% / 0.95));
+
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsla(18, 65%, 55%, 0.95),
+      hsl(25 50% 35% / 0.95)
+    );
     --shadow-elegant: 0 10px 40px -10px hsl(18 65% 55% / 0.3);
     --shadow-soft: 0 4px 20px -4px hsl(25 15% 20% / 0.1);
 
@@ -92,12 +104,15 @@ All colors MUST be HSL.
     --border: 25 15% 22%;
     --input: 25 15% 22%;
     --ring: 18 65% 55%;
-    
+
     --charcoal: 25 15% 20%;
     --warm-cream: 40 60% 95%;
     --gold: 45 80% 65%;
     --terracotta-light: 18 55% 65%;
   }
+}
+html {
+  scroll-behavior: smooth;
 }
 
 @layer base {
@@ -108,33 +123,34 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground font-sans;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-serif;
   }
 }
 
 @layer utilities {
   .font-serif {
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
   }
-  
+
   .font-sans {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
   }
-  
-  .gradient-hero {
-    background: var(--gradient-hero);
-  }
-  
+
   .shadow-elegant {
     box-shadow: var(--shadow-elegant);
   }
-  
+
   .shadow-soft {
     box-shadow: var(--shadow-soft);
   }
-  
+
   @keyframes scroll-left {
     0% {
       transform: translateX(0);
@@ -143,11 +159,11 @@ All colors MUST be HSL.
       transform: translateX(-50%);
     }
   }
-  
+
   .animate-scroll {
     animation: scroll-left 30s linear infinite;
   }
-  
+
   .animate-scroll:hover {
     animation-play-state: paused;
   }

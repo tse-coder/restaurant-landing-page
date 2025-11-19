@@ -1,7 +1,20 @@
 import { MapPin, Phone, Mail, Clock, Navigation } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SetStateAction, useEffect, useRef } from "react";
+import { NavOption } from "./Navbar";
+import { useInView } from "framer-motion";
 
-const Contact = () => {
+const Contact = ({
+  setActive,
+}: {
+  setActive: React.Dispatch<SetStateAction<NavOption>>;
+}) => {
+   const ref = useRef(null);
+  const inView = useInView(ref, { margin: "-50% 0px -50% 0px" });
+
+  useEffect(() => {
+    if (inView) setActive("CONTACT");
+  }, [inView]);
   const contactInfo = [
     {
       icon: MapPin,
@@ -30,7 +43,7 @@ const Contact = () => {
   ];
 
   return (
-    <section className="py-24 bg-background">
+    <section className="py-24 bg-background" id='contact' ref={ref}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">

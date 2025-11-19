@@ -6,8 +6,21 @@ import avatarSofia from "@/assets/avatar-sofia.jpg";
 import avatarDavid from "@/assets/avatar-david.jpg";
 import avatarLisa from "@/assets/avatar-lisa.jpg";
 import avatarRobert from "@/assets/avatar-robert.jpg";
+import { SetStateAction, useEffect, useRef } from "react";
+import { NavOption } from "./Navbar";
+import { useInView } from "framer-motion";
 
-const Testimonials = () => {
+const Testimonials = ({
+  setActive,
+}: {
+  setActive: React.Dispatch<SetStateAction<NavOption>>;
+}) => {
+   const ref = useRef(null);
+  const inView = useInView(ref, { margin: "-50% 0px -50% 0px" });
+
+  useEffect(() => {
+    if (inView) setActive("TESTIMONIALS");
+  }, [inView]);
   const testimonials = [
     {
       name: "Emily Richardson",
@@ -57,7 +70,7 @@ const Testimonials = () => {
   const duplicatedTestimonials = [...testimonials, ...testimonials];
 
   return (
-    <section className="py-24 bg-secondary/30 overflow-hidden">
+    <section className="py-24 bg-secondary/30 overflow-hidden" id="testimonials" ref={ref}>
       <div className="container mx-auto px-4 mb-16">
         <div className="text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
